@@ -27,6 +27,15 @@ $ regzar volume mute
 $ regzar power
 ```
 
+### Change source
+
+```
+$ regzar source #=> toggle dtv, hdmi1, hdmi2, ...
+$ regzar source dtv
+$ regzar source bs
+$ regzar source cs
+```
+
 ## Settings
 
 See example.regzarrc

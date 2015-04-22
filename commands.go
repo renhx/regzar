@@ -15,6 +15,7 @@ var Commands = []cli.Command{
 	commandVolume,
 	commandPower,
 	commandStatus,
+	commandSource,
 }
 
 var commandChannel = cli.Command{
@@ -39,6 +40,12 @@ var commandStatus = cli.Command{
 	Name:   "status",
 	Usage:  "show status",
 	Action: doStatus,
+}
+
+var commandSource = cli.Command{
+	Name:   "source",
+	Usage:  "change source (|dtv|bs|cs)",
+	Action: doSource,
 }
 
 func doChannel(c *cli.Context) {
@@ -89,6 +96,24 @@ func doPower(c *cli.Context) {
 
 func doStatus(c *cli.Context) {
 	sendStatusRequest()
+}
+
+func doSource(c *cli.Context) {
+	argAction := c.Args().First()
+
+	switch argAction {
+	case "":
+		sendRemoteRequest("40bf0f")
+	case "hoge":
+		sendRemoteRequest("40bf7b")
+	case "dtv":
+		sendRemoteRequest("40bf7a")
+	case "bs":
+		sendRemoteRequest("40bf7c")
+	case "cs":
+		sendRemoteRequest("40bf7d")
+	}
+
 }
 
 func sendRemoteRequest(key string) {
